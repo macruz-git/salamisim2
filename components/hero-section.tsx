@@ -63,7 +63,7 @@ export function HeroSection() {
 
         {/* Subtitle */}
         <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-foreground/60 leading-relaxed font-[var(--font-inter)]">
-          Kung bibigyan ka ng pagkakataong bumalik sa nakaraan, babalikan mo ba ito? SALAMISIM: Beyond Hiraya is a meaningful pause a moment of reflection on everything we have learned, experienced, and discovered throughout our journey as HUMSS students.
+          Kung bibigyan ka ng pagkakataong bumalik sa nakaraan, babalikan mo ba ito? SALAMISIM: Beyond Hiraya is a meaningful pause—a moment of reflection on everything we have learned, experienced, and discovered throughout our journey as HUMSS students.
         </p>
 
         {/* CTA Button */}
@@ -113,7 +113,8 @@ export function HeroSection() {
               width="100%"
               height="100%"
               frameBorder="0"
-              allow="autoplay"
+              allow="autoplay; fullscreen"
+              allowFullScreen
               className="w-full h-full"
             />
           </div>
