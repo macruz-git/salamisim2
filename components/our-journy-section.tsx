@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 
 const galleryImages = [
-  {
+{
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/main%20picture-GRHE0iAJdRargcdv4sQTToz52K1brq.jpg',
     alt: 'Our Journey - Main'
   },
@@ -117,6 +117,7 @@ const galleryImages = [
 
 export function OurJourneySection() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
@@ -204,6 +205,13 @@ export function OurJourneySection() {
                 <span className="hidden sm:inline">Previous</span>
               </button>
               <button
+                onClick={() => setIsGalleryOpen(true)}
+                className="flex-1 bg-gold hover:bg-gold/90 text-slate-900 font-semibold rounded-lg p-3 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                aria-label="View Gallery"
+              >
+                View Gallery
+              </button>
+              <button
                 onClick={goToNext}
                 className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-slate-900 font-semibold rounded-lg p-3 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                 aria-label="Next"
@@ -215,6 +223,53 @@ export function OurJourneySection() {
           </div>
         </div>
       </div>
+
+      {/* Gallery Modal */}
+      {isGalleryOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setIsGalleryOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-6xl max-h-[90vh] overflow-auto rounded-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsGalleryOpen(false)}
+              className="sticky top-4 right-4 float-right z-10 p-2 bg-gold hover:bg-gold/90 text-slate-900 rounded-full transition-all duration-300 m-4"
+              aria-label="Close gallery"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Gallery Grid */}
+            <div className="p-8">
+              <h3 className="text-3xl font-bold text-white mb-8">Gallery View</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {galleryImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group"
+                    onClick={() => {
+                      setCurrentIndex(index)
+                      setIsGalleryOpen(false)
+                    }}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

@@ -52,7 +52,7 @@ export function AboutSection() {
         {/* Description */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <p className="text-base md:text-lg text-foreground/60 leading-relaxed font-[var(--font-inter)]">
-            Choosing an academic strand is not always easy -- especially for
+            Choosing an academic strand is not always easy especially for
             Grade 10 students who are just beginning to figure out who they are
             and what they want to become. For many learners, this decision feels
             heavy, pressured, and sometimes even overwhelming.
